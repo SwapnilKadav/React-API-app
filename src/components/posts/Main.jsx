@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
-
+import "/home/swapnil/ReactJS/my-app/src/Home/Table.css"
 export const PostsMain = () => {
-
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     getPosts();
   }, []);
-
 
   // get posts
   const getPosts = () => {
@@ -28,7 +26,7 @@ export const PostsMain = () => {
     {
       name: "ID",
       selector: (row) => row.id,
-      sortable: true,      
+      sortable: true,
     },
     {
       name: "Product Name",
@@ -46,23 +44,31 @@ export const PostsMain = () => {
       name: "Product Image",
       selector: (row) => <img width={50} height={50} src={row.product_image} />,
     },
-  ]
+  ];
 
-  return  < DataTable 
-  
-  title="Product List" 
-  columns={columns} 
-  data={posts} 
-  pagination 
-  fixedHeaderScrollHeight="450px"
-  selectableRows
-  selectableRowsHighlight
-  highlightOnHover
-  subHeader
+  const styles = {
+    container: { margin: "auto", width: "fit-content" },
+  };
 
-    />
+  return (
+    <div style={styles.container}>
+    <DataTable
+      title="Product List"
+      columns={columns}
+      data={posts}
+      pagination
+      fixedHeaderScrollHeight="450px"
+      selectableRows
+      selectableRowsHighlight
+      highlightOnHover
+      subHeader
+      >
 
-  // <div className="container my-4">
+    </DataTable>
+      </div>
+  );
+
+  {/* // <div className="container my-4">
   //   <div className="row">
   //     <div className="col-xl-6">
   //       <h4 className="fw-bold">API Handing Using React Hooks</h4>
@@ -95,5 +101,5 @@ export const PostsMain = () => {
   //         ))}
   //     </tbody>
   //   </table>
-  // </div>
+  // </div> */}
 };
